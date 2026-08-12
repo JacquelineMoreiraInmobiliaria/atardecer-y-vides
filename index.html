@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Atardecer y Vides — chacra exclusiva de 10 hectáreas con vista panorámica de 180° al mar en Piriápolis, Uruguay.">
+  <title>Atardecer y Vides | Chacra en Piriápolis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green:#172415;
+      --green-2:#27391e;
+      --olive:#718c2d;
+      --cream:#f5f3eb;
+      --white:#fff;
+      --ink:#20251d;
+      --muted:#6d7169;
+      --line:#deded4;
+      --shadow:0 16px 45px rgba(0,0,0,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:var(--cream);font-family:Montserrat,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img,video{display:block;max-width:100%}
+    .nav{
+      position:absolute;z-index:10;top:0;left:0;right:0;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:22px 5vw;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);
+    }
+    .brand{font-family:"Cormorant Garamond",serif;font-size:24px;line-height:.8;font-weight:600}
+    .brand small{display:block;font-family:Montserrat,sans-serif;font-size:8px;letter-spacing:3px;margin-top:7px}
+    .navlinks{display:flex;gap:24px;align-items:center;font-size:10px;letter-spacing:1px}
+    .navlinks a{opacity:.92}
+    .wa{background:#7d9b2f;color:#fff;padding:12px 18px;border-radius:2px;font-weight:700}
+    .hero{
+      min-height:92vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;color:#fff;
+      background:linear-gradient(90deg,rgba(0,0,0,.68),rgba(0,0,0,.12)),url("fotos/hero.jpg") center/cover;
+    }
+    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+    .hero-content{width:min(1100px,90%);margin:0 auto;padding:0 0 8vh}
+    .eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase}
+    h1,h2,h3{font-family:"Cormorant Garamond",serif}
+    h1{font-size:clamp(56px,8vw,108px);line-height:.82;margin:18px 0 26px;font-weight:500}
+    .hero-sub{font-size:17px;max-width:520px;line-height:1.7}
+    .hero-stats{display:flex;flex-wrap:wrap;gap:34px;margin-top:38px}
+    .hero-stat strong{display:block;font-family:"Cormorant Garamond",serif;font-size:27px}
+    .hero-stat span{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;opacity:.85}
+    .button{display:inline-flex;align-items:center;gap:10px;padding:14px 20px;background:var(--olive);color:#fff;border:0;margin-top:34px;font-size:10px;letter-spacing:1.2px;font-weight:700}
+    .section{padding:90px 6vw}
+    .split{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
+    .split-copy{display:flex;flex-direction:column;justify-content:center;padding:70px 9vw 70px 6vw;background:var(--cream)}
+    .split-media{min-height:420px;background:#263120 center/cover}
+    .split-media video,.split-media img{width:100%;height:100%;object-fit:cover}
+    .kicker{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--olive);font-weight:700}
+    h2{font-size:52px;line-height:.95;margin:18px 0 25px;font-weight:500}
+    .copy{font-size:14px;line-height:1.9;color:#51564d;max-width:590px}
+    .stats{display:grid;grid-template-columns:repeat(6,1fr);background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .statbox{padding:30px 12px;text-align:center;border-right:1px solid var(--line)}
+    .statbox:last-child{border-right:0}
+    .statbox .icon{font-size:22px;margin-bottom:12px}
+    .statbox strong{display:block;font-family:"Cormorant Garamond",serif;font-size:24px}
+    .statbox span{font-size:8px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+    .gallery{background:var(--green);color:#fff}
+    .gallery-head{text-align:center;margin-bottom:40px}
+    .gallery h2{margin-bottom:12px}
+    .tabs{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .tab{border:1px solid rgba(255,255,255,.25);padding:9px 14px;border-radius:30px;font-size:9px;letter-spacing:1px}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+    .tile{aspect-ratio:1.35;overflow:hidden;background:#34412d;position:relative}
+    .tile img,.tile video{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .tile:hover img,.tile:hover video{transform:scale(1.04)}
+    .placeholder{
+      width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;
+      color:rgba(255,255,255,.72);padding:20px;font-size:11px;letter-spacing:1px;text-transform:uppercase;
+      background:linear-gradient(135deg,#2a3725,#566546);
+    }
+    .features{display:grid;grid-template-columns:1fr 1fr;align-items:center}
+    .features-copy{padding:80px 8vw}
+    .features-image{min-height:620px;background:url("fotos/casa.jpg") center/cover}
+    .checks{display:grid;grid-template-columns:1fr 1fr;gap:12px 30px;margin-top:30px}
+    .check{font-size:12px;color:#555b51}
+    .check::before{content:"✓";color:var(--olive);font-weight:700;margin-right:10px}
+    .location{display:grid;grid-template-columns:.8fr 1.2fr;background:#ecebe2}
+    .location-copy{padding:70px 7vw}
+    .map{min-height:480px}
+    .map iframe{width:100%;height:100%;border:0;min-height:480px}
+    .contact{
+      color:#fff;text-align:center;padding:100px 6vw;
+      background:linear-gradient(90deg,rgba(0,0,0,.65),rgba(0,0,0,.38)),url("fotos/atardecer.jpg") center/cover;
+    }
+    .contact h2{font-size:60px;margin-bottom:12px}
+    .price{font-family:"Cormorant Garamond",serif;font-size:42px;margin-top:20px}
+    .contact-buttons{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+    .button.outline{background:transparent;border:1px solid rgba(255,255,255,.6)}
+    footer{background:#11140f;color:#fff;padding:30px 6vw;display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:.7px}
+    @media(max-width:900px){
+      .navlinks{display:none}
+      .hero{min-height:86vh}
+      .hero-content{padding-bottom:50px}
+      h1{font-size:64px}
+      .hero-stats{gap:20px}
+      .split,.features,.location{grid-template-columns:1fr}
+      .split-media{min-height:350px;order:-1}
+      .stats{grid-template-columns:repeat(3,1fr)}
+      .statbox:nth-child(3){border-right:0}
+      .statbox{border-bottom:1px solid var(--line)}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .features-image{min-height:420px}
+      .location .map{order:-1}
+    }
+    @media(max-width:520px){
+      .nav{padding:18px 20px}
+      .brand{font-size:20px}
+      .hero-content{width:88%}
+      h1{font-size:52px}
+      .hero-sub{font-size:14px}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .statbox:nth-child(2),.statbox:nth-child(4),.statbox:nth-child(6){border-right:0}
+      .grid{grid-template-columns:1fr}
+      h2{font-size:43px}
+      .section{padding:65px 8vw}
+      .split-copy,.features-copy,.location-copy{padding:55px 8vw}
+      footer{display:block;text-align:center;line-height:2}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="brand">ATARDECER Y VIDES<small>CHACRA · PIRIÁPOLIS</small></a>
+  <div class="navlinks">
+    <a href="#propiedad">LA PROPIEDAD</a>
+    <a href="#galeria">GALERÍA</a>
+    <a href="#caracteristicas">CARACTERÍSTICAS</a>
+    <a href="#ubicacion">UBICACIÓN</a>
+    <a href="#contacto">CONTACTO</a>
+    <a class="wa" href="https://wa.me/?text=Hola%2C%20estoy%20interesado%20en%20la%20propiedad%20Atardecer%20y%20Vides." target="_blank">WHATSAPP</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <video autoplay muted loop playsinline poster="fotos/hero.jpg">
+    
+  </video>
+  <div class="hero-content">
+    <div class="eyebrow">Piriápolis · Maldonado · Uruguay</div>
+    <h1>Atardecer<br>y Vides</h1>
+    <div class="hero-sub">10 hectáreas de privacidad, naturaleza y una imponente vista panorámica de 180° sobre el mar.</div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>10 ha</strong><span>Superficie</span></div>
+      <div class="hero-stat"><strong>4</strong><span>Dormitorios</span></div>
+      <div class="hero-stat"><strong>3</strong><span>Baños</span></div>
+      <div class="hero-stat"><strong>180°</strong><span>Vista al mar</span></div>
+    </div>
+    <a class="button" href="#propiedad">CONOCER LA PROPIEDAD ↓</a>
+  </div>
+</header>
+
+<section id="propiedad" class="split">
+  <div class="split-copy">
+    <div class="kicker">La propiedad</div>
+    <h2>El mar como protagonista.</h2>
+    <p class="copy">Ubicada en la zona alta de Piriápolis, dentro de un entorno de chacras de categoría y residencias de gran porte, esta propiedad combina privacidad, naturaleza y una residencia de altísimo nivel.</p>
+    <p class="copy">A solo 2 kilómetros de la playa y de todos los servicios, ofrece una vista franca de 180° al mar y atardeceres únicos durante todo el año.</p>
+    <a class="button" href="#galeria">VER GALERÍA ↗</a>
+  </div>
+  <div class="split-media">
+    <img src="fotos/piscina.jpg" alt="Piscina con vista al mar de Atardecer y Vides">
+  </div>
+</section>
+
+<section class="stats">
+  <div class="statbox"><div class="icon">⌂</div><strong>10 ha</strong><span>Superficie total</span></div>
+  <div class="statbox"><div class="icon">⌂</div><strong>1 planta</strong><span>Residencia</span></div>
+  <div class="statbox"><div class="icon">▣</div><strong>4</strong><span>Dormitorios</span></div>
+  <div class="statbox"><div class="icon">◌</div><strong>3</strong><span>Baños</span></div>
+  <div class="statbox"><div class="icon">≈</div><strong>180°</strong><span>Vista al mar</span></div>
+  <div class="statbox"><div class="icon">♨</div><strong>Climatizada</strong><span>Piscina + jacuzzi</span></div>
+</section>
+
+<section id="galeria" class="section gallery">
+  <div class="gallery-head">
+    <div class="kicker" style="color:#a4bf52">Galería</div>
+    <h2>Una propiedad para descubrir.</h2>
+    <div class="tabs"><span class="tab">TODAS</span><span class="tab">VISTAS AL MAR</span><span class="tab">LA CASA</span><span class="tab">VIÑEDO</span><span class="tab">EXTERIORES</span></div>
+  </div>
+  <div class="grid">
+    <div class="tile"><img src="fotos/hero.jpg" alt="Vista desde la propiedad hacia el mar"></div>
+    <div class="tile"><img src="fotos/atardecer.jpg" alt="Atardecer sobre la propiedad"></div>
+    <div class="tile"><img src="fotos/piscina.jpg" alt="Piscina con vista al mar"></div>
+    <div class="tile"><img src="fotos/campo.jpg" alt="Campo y entorno natural"></div>
+    <div class="tile"><img src="fotos/living.jpg" alt="Living principal"></div>
+    <div class="tile"><img src="fotos/cocina.jpg" alt="Cocina"></div>
+    <div class="tile"><img src="fotos/dormitorio-1.jpg" alt="Dormitorio"></div>
+    <div class="tile"><img src="fotos/living-4.jpg" alt="Living y comedor"></div>
+  </div>
+</section>
+
+<section id="caracteristicas" class="features">
+  <div class="features-copy">
+    <div class="kicker">Características</div>
+    <h2>Confort, diseño y naturaleza.</h2>
+    <p class="copy">La residencia fue desarrollada íntegramente en una sola planta y construida con materiales de primera calidad, pensada para brindar confort durante todo el año.</p>
+    <div class="checks">
+      <div class="check">Vista panorámica de 180° al mar</div>
+      <div class="check">4 dormitorios · 2 suites</div>
+      <div class="check">3 baños</div>
+      <div class="check">Piscina climatizada con jacuzzi</div>
+      <div class="check">Living-comedor con estufa a leña</div>
+      <div class="check">Barbacoa integrada</div>
+      <div class="check">Pisos de porcelanato</div>
+      <div class="check">Losa radiante eléctrica independiente</div>
+      <div class="check">Aberturas de aluminio con DVH</div>
+      <div class="check">Viñedo de 4 años</div>
+      <div class="check">Tajamar</div>
+      <div class="check">Dos accesos independientes</div>
+      <div class="check">Cochera</div>
+      <div class="check">Excelente privacidad</div>
+    </div>
+  </div>
+  <div class="features-image"></div>
+</section>
+
+<section id="ubicacion" class="location">
+  <div class="location-copy">
+    <div class="kicker">Ubicación</div>
+    <h2>Piriápolis,<br>Uruguay.</h2>
+    <p class="copy">Calle 29 y Vecinal a la Bodega, en la zona alta de Piriápolis.</p>
+    <p class="copy"><strong>A 2 km de la playa y de todos los servicios.</strong></p>
+    <p class="copy">Coordenadas: -34.83216095, -55.29114914</p>
+    <a class="button" href="https://www.google.com/maps/search/?api=1&query=-34.83216094970703,-55.29114913940430" target="_blank">ABRIR EN GOOGLE MAPS ↗</a>
+  </div>
+  <div class="map">
+    <iframe loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=-55.33%2C-34.86%2C-55.25%2C-34.80&layer=mapnik&marker=-34.83216094970703%2C-55.29114913940430"></iframe>
+  </div>
+</section>
+
+<section id="contacto" class="contact">
+  <div class="kicker" style="color:#b7cf72">Una propiedad excepcional</div>
+  <h2>¿Te interesa<br>Atardecer y Vides?</h2>
+  <p>Una residencia única para disfrutar del campo, el mar y absoluta privacidad.</p>
+  <div class="price">USD 850.000</div>
+  <div class="contact-buttons">
+    <a class="button" href="https://wa.me/?text=Hola%2C%20estoy%20interesado%20en%20la%20propiedad%20Atardecer%20y%20Vides." target="_blank">CONTACTAR POR WHATSAPP</a>
+    <a class="button outline" href="mailto:?subject=Atardecer%20y%20Vides">ENVIAR EMAIL</a>
+  </div>
+</section>
+
+<footer>
+  <div><strong>ATARDECER Y VIDES</strong> · CHACRA · PIRIÁPOLIS</div>
+  <div>Presentación digital de la propiedad</div>
+</footer>
+
+<script>
+  // Los videos se reproducen automáticamente, sin sonido y en loop.
+  // Cuando agreguemos los archivos reales a /videos, esta misma página los utilizará.
+  document.querySelectorAll('video').forEach(v => {
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    const play = () => v.play().catch(() => {});
+    play();
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) play();
+    });
+  });
+</script>
+</body>
+</html>
